@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "Ubuntu Mono", monospace;
+  src: local("Open Sans Light"),
+    url("https://fonts.googleapis.com/css?family=Ubuntu+Mono")
+      format("truetype");
+}
+
+.intro-wrapper {
+  height: calc(100vh - 64px);
+  background: #eee;
+  margin: 0;
+  display: flex;
+  h1 {
+    font-family: "Ubuntu Mono", monospace;
+    margin: auto !important;
+  }
+}
