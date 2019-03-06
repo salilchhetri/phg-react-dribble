@@ -3,14 +3,16 @@ import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { withStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import Logo from '../../logo.svg';
+import NavItem from '../NavItem/NavItem';
 import "./Navbar.scss";
+
+import Menus from '../../constants/Menus';
 
 const styles = theme => ({
   root: {
@@ -21,7 +23,7 @@ const styles = theme => ({
   },
   menuButton: {
     marginLeft: -12,
-    marginRight: 20
+    marginRight: 0
   },
   title: {
     display: "none",
@@ -46,7 +48,8 @@ const styles = theme => ({
 class Navbar extends React.Component {
   state = {
     anchorEl: null,
-    mobileMoreAnchorEl: null
+    mobileMoreAnchorEl: null,
+    selectedItem: 0
   };
 
   handleProfileMenuOpen = event => {
@@ -65,7 +68,12 @@ class Navbar extends React.Component {
   handleMobileMenuClose = () => {
     this.setState({ mobileMoreAnchorEl: null });
   };
-
+  
+  navigate = (id)=>{
+    // document.querySelector('.active').classList.remove('active');
+    //   document.getElementById(id).classList.add('active')
+    this.setState({selectedItem: id})
+  }
   render() {
     const { anchorEl, mobileMoreAnchorEl } = this.state;
     const { classes } = this.props;
@@ -80,7 +88,7 @@ class Navbar extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+        <MenuItem onClick={this.handleClose}className={"active"}>Profile</MenuItem>
         <MenuItem onClick={this.handleClose}>My account</MenuItem>
       </Menu>
     );
@@ -93,20 +101,19 @@ class Navbar extends React.Component {
         open={isMobileMenuOpen}
         onClose={this.handleMobileMenuClose}
       >
-        <MenuItem>
-          <p>About Me</p>
-        </MenuItem>
-        <MenuItem>
-          <p>What I do</p>
-        </MenuItem>
-        <MenuItem>
-          <p>Portfolio</p>
-        </MenuItem>
-        <MenuItem>
-          <p>Contact</p>
+        <MenuItem className="active">
+          <p>About Salil</p>
         </MenuItem>
       </Menu>
     );
+
+    const renderMenus = 
+      Menus.map((menu, index)=>{
+        return(
+          <NavItem name={menu.name} key={menu.id} id={menu.id} isActive={menu.isActive} handleNavigation={()=>this.navigate(menu.id)} selected={this.state.selectedItem === index}/>
+        )
+      })
+    
 
     return (
       <div className={classes.root}>
@@ -119,20 +126,10 @@ class Navbar extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
-              className={classes.title}
-              variant="title"
-              color="inherit"
-              noWrap
-            >
-              PurpleHaze Graphics
-            </Typography>
+            <img src={Logo} alt="Logo" className="logo"/>        
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <Button color="inherit">About Me</Button>
-              <Button color="inherit">What I do</Button>
-              <Button color="inherit">Portfolio</Button>
-              <Button color="inherit">Contact</Button>
+               {renderMenus}
             </div>
             <div className={classes.sectionMobile}>
               <IconButton

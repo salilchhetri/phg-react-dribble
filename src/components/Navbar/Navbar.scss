@@ -1,5 +1,12 @@
 @import "../../styles/theme.scss";
 
 header {
-  background: $dark_grey !important;
+  background: $grey!important;
+}
+
+.active{
+  color: #03A9F4!important;
+}
+.logo{
+  max-height: 50px;
 }

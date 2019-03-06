@@ -1,3 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Armata" rel="stylesheet');
+@import url('https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css');
 // Colors
-$dark_grey: #303030;
+$grey: #303030;
+$dark_grey: #343434;
 $white: #ffffff;
+$brown: #771f2c;
+$crimson: #f00038;
+$hover: #d82545;
+$sandy-brown: #ffa752;
+$navy: #243f67;
+$darker-grey: #252525;
+$text: #888887;
+
+// Fonts
+@font-face {
+  font-family: "tex_gyre_adventorbold";
+  src: url("/fonts/texgyreadventor-bold-webfont.woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+// Reference only ***
+//font-family: 'Armata', sans-serif;
+
+h1, h2{
+  font-family: "tex_gyre_adventorbold"!important;
+}
+p{
+  font-family: 'Armata', sans-serif!important;
+}

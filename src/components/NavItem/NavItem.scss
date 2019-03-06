@@ -1,0 +1,18 @@
+@import '../../styles/theme.scss';
+
+.selected{
+background: none!important;
+}
+.nav-items{
+    p{
+        color: $text;
+    }
+}
+.nav-items:hover{
+    p{
+        color: $hover;
+    }
+}
+.selected p{
+    color: $white;
+}
